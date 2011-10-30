@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 static char *base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 void base64_encode(const unsigned char *input,int len, unsigned char *output){
   do{
@@ -26,7 +27,7 @@ void base64_encode(const unsigned char *input,int len, unsigned char *output){
 }
 		       
 int main(int argc, char *argv[]){
-  char buffer[(3/4)*sizeof(argv[1])];
+  char *buffer = (char *) malloc(4/3 * sizeof(argv[1])/sizeof(char));
   if(argc == 2){
   base64_encode(argv[1],sizeof(argv[1]),&buffer[0]);
   printf(buffer);
